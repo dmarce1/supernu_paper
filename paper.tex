@@ -1,0 +1,92 @@
+\documentclass[preprint]{aastex62}
+
+\usepackage{amsmath}
+\usepackage{natbib}
+\bibliographystyle{apj}
+
+
+\newcommand{\vdag}{(v)^\dagger}
+\newcommand\aastex{AAS\TeX}
+\newcommand\latex{La\TeX}
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #2} #1}
+\newcommand{\vect}[1]{{\bf #1}}
+\newcommand{\diverg}[1]{ \vect{\nabla} \cdot #1 }
+\newcommand{\eq}[1]{Equation (\ref{#1})}
+\newcommand{\eqs}[2]{Equations (\ref{#1}) - (\ref{#2})}
+
+\graphicspath{{./}{figures/}}
+
+\shorttitle{SuperNU with Hydrodynamics}
+\shortauthors{Marcello et. al.}
+
+\begin{document}
+
+\title{SuperNU with Hydrodynamics}
+
+
+\author{Dominic C. Marcello}
+\affiliation{Louisiana State University}
+\author{Ryan T. Wollaeger}
+\affiliation{Los Alamos National Laboratory}
+\author{Wesley Even}
+\affiliation{Los Alamos National Laboratory}
+\author{Emmanouil Chatzopoulos}
+\affiliation{Louisiana State University}
+\begin{abstract}
+
+
+\end{abstract}
+
+\section{Introduction} \label{sec:intro}
+
+\section{Model Equations} \label{sec:model}
+
+The equations governing the hydrodynamic evolution of the system are
+\begin{equation}
+\label{rho_eq}
+\pderiv{\rho_s}{t} + \diverg{\rho_s \vect{v}} + \frac{3 \rho_s}{t}  = 0,
+\end{equation}
+\begin{equation}
+\label{mom_eq}
+\pderiv{\rho \vect{u}}{t} + \diverg{\rho \vect{v}  \vect{u}}  + \frac{3 \rho  \vect{u}}{t}  = -\vect{g},
+\end{equation}
+\begin{equation}
+\label{egas_eq}
+\pderiv{E_\mathrm{gas}}{t} + \diverg{\left(\vect{v} E_\mathrm{gas} + \vect{u} P_\mathrm{gas}\right)}  + \frac{3 E_\mathrm{gas}}{t}  = -g^{\left(0\right)},
+\end{equation}
+and
+\begin{equation}
+\label{tau_eq}
+\pderiv{\tau}{t} + \diverg{\tau \vect{v}} + \frac{3 \tau}{\gamma t}  = 0,
+\end{equation}
+$\rho_s$ is the mass density of each element, $\vect{g}$ is the momentum source due to radiation, and $g^{\left(0\right)}$ is the energy source due to radiation. The total density, $\rho$, is defined as the sum of all the elemental mass densities, 
+\begin{equation}
+\rho := \Sigma_s \rho_s.
+\end{equation} 
+The inertial frame velocity, $\vect{u}$, is defined relative to the lab frame fluid velocity, $\vect{v}$, according to
+\begin{equation}
+\vect{u} := \vect{v} + \frac{\vect{x}}{t},
+\end{equation}
+where $\vect{x}$ is the position vector relative to the origin. This defintion also requires that $t=0$ at the start of the homologous expansion. The total gas energy, $E_\mathrm{gas}$, is defined as the sum of the internal heat energy, $\rho \epsilon$, and the kinetic
+energy,
+\begin{equation}
+E_\mathrm{gas} := \rho \epsilon + \tfrac{1}{2} \rho u^2.
+\end{equation}
+The gas pressure is set according to the ideal gas equation of state for a monatomic gas, 
+\begin{equation}
+P_\mathrm{gas} := \left(\gamma -1\right) \rho \epsilon,
+\end{equation}
+where $\gamma := \tfrac{5}{3}$. The entropy trace, $\tau$, is defined as 
+\begin{equation}
+\tau := \left( \rho \epsilon \right)^{\tfrac{1}{\gamma}}.
+\end{equation}
+The specific internal gas energy, $\epsilon$, can be determined from either $E_\mathrm{gas}$ or $\tau$. This choice is decided using the ``dual energy formalism'' \cite{ROKC1993}.
+
+The hyperbolic parts of \eqs{rho_eq}{egas_eq} are solved using the semi-discrete scheme of \cite{KT2000}
+
+
+\bibliography{paper}
+
+\end{document}
+
+
